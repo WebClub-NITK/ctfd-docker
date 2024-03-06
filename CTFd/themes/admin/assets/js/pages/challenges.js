@@ -1,11 +1,10 @@
 import "./main";
-import CTFd from "../compat/CTFd";
+import CTFd from "core/CTFd";
 import $ from "jquery";
-import "../compat/json";
-import { ezAlert, ezQuery } from "../compat/ezq";
+import { ezAlert, ezQuery } from "core/ezq";
 
 function deleteSelectedChallenges(_event) {
-  let challengeIDs = $("input[data-challenge-id]:checked").map(function () {
+  let challengeIDs = $("input[data-challenge-id]:checked").map(function() {
     return $(this).data("challenge-id");
   });
   let target = challengeIDs.length === 1 ? "challenge" : "challenges";
@@ -13,24 +12,24 @@ function deleteSelectedChallenges(_event) {
   ezQuery({
     title: "Delete Challenges",
     body: `Are you sure you want to delete ${challengeIDs.length} ${target}?`,
-    success: function () {
+    success: function() {
       const reqs = [];
       for (var chalID of challengeIDs) {
         reqs.push(
           CTFd.fetch(`/api/v1/challenges/${chalID}`, {
-            method: "DELETE",
-          }),
+            method: "DELETE"
+          })
         );
       }
-      Promise.all(reqs).then((_responses) => {
+      Promise.all(reqs).then(_responses => {
         window.location.reload();
       });
-    },
+    }
   });
 }
 
 function bulkEditChallenges(_event) {
-  let challengeIDs = $("input[data-challenge-id]:checked").map(function () {
+  let challengeIDs = $("input[data-challenge-id]:checked").map(function() {
     return $(this).data("challenge-id");
   });
 
@@ -57,21 +56,21 @@ function bulkEditChallenges(_event) {
     </form>
     `),
     button: "Submit",
-    success: function () {
+    success: function() {
       let data = $("#challenges-bulk-edit").serializeJSON(true);
       const reqs = [];
       for (var chalID of challengeIDs) {
         reqs.push(
           CTFd.fetch(`/api/v1/challenges/${chalID}`, {
             method: "PATCH",
-            body: JSON.stringify(data),
-          }),
+            body: JSON.stringify(data)
+          })
         );
       }
-      Promise.all(reqs).then((_responses) => {
+      Promise.all(reqs).then(_responses => {
         window.location.reload();
       });
-    },
+    }
   });
 }
 

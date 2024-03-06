@@ -24,12 +24,6 @@
 					<a class="nav-link rounded-0" href="#accounts" role="tab" data-toggle="tab">Accounts</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link rounded-0" href="#pages" role="tab" data-toggle="tab">Pages</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link rounded-0" href="#brackets" role="tab" data-toggle="tab">Brackets</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link rounded-0" href="#fields" role="tab" data-toggle="tab">Custom Fields</a>
 				</li>
 				<li class="nav-item">
@@ -46,9 +40,6 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link rounded-0" href="#ctftime" role="tab" data-toggle="tab">Time</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link rounded-0" href="#social" role="tab" data-toggle="tab">Social</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link rounded-0" href="#legal" role="tab" data-toggle="tab">Legal</a>
@@ -82,10 +73,6 @@
 
 				{% include "admin/configs/accounts.html" %}
 
-				{% include "admin/configs/pages.html" %}
-
-				{% include "admin/configs/brackets.html" %}
-
 				{% include "admin/configs/fields.html" %}
 
 				{% include "admin/configs/mlc.html" %}
@@ -97,8 +84,6 @@
 				{% include "admin/configs/email.html" %}
 
 				{% include "admin/configs/time.html" %}
-
-				{% include "admin/configs/social.html" %}
 
 				{% include "admin/configs/legal.html" %}
 
@@ -115,5 +100,5 @@
 {% endblock %}
 
 {% block entrypoint %}
-	{{ Assets.js("assets/js/pages/configs.js", theme="admin") }}
+	<script defer src="{{ url_for('views.themes', theme='admin', path='js/pages/configs.js') }}"></script>
 {% endblock %}

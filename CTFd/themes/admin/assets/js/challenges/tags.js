@@ -1,12 +1,11 @@
 import $ from "jquery";
-import "../compat/format";
-import CTFd from "../compat/CTFd";
+import CTFd from "core/CTFd";
 
 export function deleteTag(_event) {
   const $elem = $(this);
   const tag_id = $elem.attr("tag-id");
 
-  CTFd.api.delete_tag({ tagId: tag_id }).then((response) => {
+  CTFd.api.delete_tag({ tagId: tag_id }).then(response => {
     if (response.success) {
       $elem.parent().remove();
     }
@@ -23,10 +22,10 @@ export function addTag(event) {
   const tag = $elem.val();
   const params = {
     value: tag,
-    challenge: window.CHALLENGE_ID,
+    challenge: window.CHALLENGE_ID
   };
 
-  CTFd.api.post_tag_list({}, params).then((response) => {
+  CTFd.api.post_tag_list({}, params).then(response => {
     if (response.success) {
       const tpl =
         "<span class='badge badge-primary mx-1 challenge-tag'>" +

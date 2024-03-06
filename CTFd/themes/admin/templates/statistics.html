@@ -85,8 +85,10 @@
 {% endblock %}
 
 {% block scripts %}
+	<script defer src="{{ url_for('views.themes', theme='admin', path='js/echarts.bundle.js') }}"></script>
+	<script defer src="{{ url_for('views.themes', theme='admin', path='js/graphs.js') }}"></script>
 {% endblock %}
 
 {% block entrypoint %}
-	{{ Assets.js("assets/js/pages/statistics.js", theme="admin") }}
+	<script defer src="{{ url_for('views.themes', theme='admin', path='js/pages/statistics.js') }}"></script>
 {% endblock %}
