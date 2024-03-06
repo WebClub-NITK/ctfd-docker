@@ -1,6 +1,6 @@
 import $ from "jquery";
 import styles from "../styles";
-import times from "../compat/times";
+import times from "core/times";
 
 $(() => {
   styles();
